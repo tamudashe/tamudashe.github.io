@@ -1,4 +1,4 @@
-# [Software-Engineer-Portfolio](https://tamudashe.github.io/Online-Portfolio/) Tamudashe Ngara
+# [Software-Engineer-Portfolio](https://tamudashe.github.io/Software-Engineer-Portfolio/) Tamudashe Ngara
 
 ## **Hey there! I'm a, junior, computer science major.**
 
