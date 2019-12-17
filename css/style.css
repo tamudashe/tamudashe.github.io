@@ -128,15 +128,6 @@ html {
     font-size:13px;
     color: #fafafa;
   }
-  
-  #console {
-    width:670px;
-    padding: 40px;
-    height: 620px;
-    margin:0 auto;
-    background: #343434;
-  }
-  
   span.answer {
     color:#ccc;
   }
