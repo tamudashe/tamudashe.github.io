@@ -8,7 +8,6 @@ const closeBtn = document.getElementById('close');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 const topBtn = document.getElementById('top');
-const mapEl = document.getElementById('map');
 
 const LABELS = { 'washington-dc': 'Washington DC' };
 const ABBREVS = new Set(['sf', 'bw', 'dc', 'nsx', 'bmw', 'v8', 'lc']);
@@ -21,7 +20,6 @@ function altFromFilename(name) {
 
 let currentIndex = 0;
 let activeCat = 'all';
-let leafletMap = null;
 let meta = {};
 
 function visiblePhotos() {
@@ -65,7 +63,6 @@ fetch('photos.json')
     });
 
     applyHash();
-    initMapToggle();
   })
   .catch(() => {
     gallery.innerHTML = '<p id="empty">No photos yet.</p>';
@@ -192,59 +189,3 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-function initMapToggle() {
-  const hasGPS = Object.values(meta).some(m => m.gps);
-  if (!hasGPS) return;
-
-  const btn = document.createElement('button');
-  btn.id = 'map-toggle';
-  btn.textContent = 'Map';
-  filters.appendChild(btn);
-
-  btn.addEventListener('click', () => {
-    const mapVisible = !mapEl.hidden;
-    if (mapVisible) {
-      mapEl.hidden = true;
-      gallery.hidden = false;
-      btn.classList.remove('active');
-      btn.textContent = 'Map';
-    } else {
-      gallery.hidden = true;
-      mapEl.hidden = false;
-      btn.classList.add('active');
-      btn.textContent = 'Grid';
-      if (!leafletMap) initMap();
-    }
-  });
-}
-
-function initMap() {
-  leafletMap = L.map('map').setView([20, 0], 2);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(leafletMap);
-
-  const allPhotos = Array.from(document.querySelectorAll('.photo'));
-
-  Object.entries(meta).forEach(([path, m]) => {
-    if (!m.gps) return;
-    const [lat, lng] = m.gps;
-    const marker = L.circleMarker([lat, lng], {
-      radius: 7, fillColor: '#1d1d1f', color: '#fff',
-      weight: 2, opacity: 1, fillOpacity: 0.9
-    }).addTo(leafletMap);
-
-    marker.on('click', () => {
-      const img = allPhotos.find(p => p.dataset.path === path);
-      if (img) {
-        mapEl.hidden = true;
-        gallery.hidden = false;
-        document.getElementById('map-toggle').classList.remove('active');
-        document.getElementById('map-toggle').textContent = 'Map';
-        const photos = visiblePhotos();
-        openPhoto(photos.indexOf(img));
-      }
-    });
-  });
-}
