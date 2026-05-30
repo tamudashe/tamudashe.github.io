@@ -5,6 +5,13 @@ python3 - <<'EOF'
 import json, os, subprocess
 
 exts = ('.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif')
+
+# Load existing manifest to preserve ordering
+existing = {}
+if os.path.exists('photos.json'):
+    with open('photos.json') as f:
+        existing = json.load(f)
+
 result = {}
 
 for category in sorted(os.listdir('photos')):
@@ -15,16 +22,21 @@ for category in sorted(os.listdir('photos')):
     thumb_dir = f'photos/thumbs/{category}'
     os.makedirs(thumb_dir, exist_ok=True)
 
-    photos = sorted(f for f in os.listdir(cat_path) if f.lower().endswith(exts))
+    on_disk = set(f for f in os.listdir(cat_path) if f.lower().endswith(exts))
 
-    for name in photos:
+    # Generate missing thumbnails
+    for name in on_disk:
         thumb = f'{thumb_dir}/{name}'
         if not os.path.exists(thumb):
             subprocess.run(['sips', '-Z', '1200', f'{cat_path}/{name}', '--out', thumb],
                            capture_output=True)
             print(f'thumbnail: {category}/{name}')
 
-    result[category] = photos
+    # Preserve existing order, append new photos, drop deleted ones
+    prev = existing.get(category, [])
+    ordered = [f for f in prev if f in on_disk]
+    ordered += sorted(f for f in on_disk if f not in set(prev))
+    result[category] = ordered
 
 with open('photos.json', 'w') as f:
     json.dump(result, f, indent=2)
