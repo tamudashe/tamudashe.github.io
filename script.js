@@ -9,6 +9,13 @@ const nextBtn = document.getElementById('next');
 const topBtn = document.getElementById('top');
 
 const LABELS = { 'washington-dc': 'Washington DC' };
+const ABBREVS = new Set(['sf', 'bw', 'dc', 'nsx', 'bmw', 'v8', 'lc']);
+
+function altFromFilename(name) {
+  return name.replace(/\.[^.]+$/, '').split('-')
+    .map(w => ABBREVS.has(w) ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
 
 let currentIndex = 0;
 
@@ -41,7 +48,7 @@ fetch('photos.json')
       img.dataset.cat = cat;
       img.dataset.full = `photos/${cat}/${name}`;
       img.loading = 'lazy';
-      img.alt = '';
+      img.alt = altFromFilename(name);
       img.addEventListener('load', () => img.classList.add('loaded'));
       if (img.complete) img.classList.add('loaded');
       img.addEventListener('click', () => {
