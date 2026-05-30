@@ -17,7 +17,7 @@ function visiblePhotos() {
 fetch('photos.json')
   .then(r => r.json())
   .then(data => {
-    const categories = Object.keys(data).filter(k => data[k].length > 0);
+    const categories = Object.keys(data).filter(k => k !== '_all' && data[k].length > 0);
 
     if (!categories.length) {
       gallery.innerHTML = '<p id="empty">No photos yet.</p>';
@@ -27,28 +27,27 @@ fetch('photos.json')
     buildFilters(categories);
     applyHash();
 
-    const lists = categories.map(cat => data[cat].map(name => ({ cat, name })));
-    const maxLen = Math.max(...lists.map(l => l.length));
-    for (let i = 0; i < maxLen; i++) {
-      for (const list of lists) {
-        if (i >= list.length) continue;
-        const { cat, name } = list[i];
-        const img = document.createElement('img');
-        img.src = `photos/thumbs/${cat}/${name}`;
-        img.className = 'photo';
-        img.dataset.cat = cat;
-        img.dataset.full = `photos/${cat}/${name}`;
-        img.loading = 'lazy';
-        img.alt = '';
-        img.addEventListener('load', () => img.classList.add('loaded'));
-        if (img.complete) img.classList.add('loaded');
-        img.addEventListener('click', () => {
-          const photos = visiblePhotos();
-          openPhoto(photos.indexOf(img));
-        });
-        gallery.appendChild(img);
-      }
-    }
+    const entries = (data._all || []).map(path => {
+      const slash = path.indexOf('/');
+      return { cat: path.slice(0, slash), name: path.slice(slash + 1) };
+    });
+
+    entries.forEach(({ cat, name }) => {
+      const img = document.createElement('img');
+      img.src = `photos/thumbs/${cat}/${name}`;
+      img.className = 'photo';
+      img.dataset.cat = cat;
+      img.dataset.full = `photos/${cat}/${name}`;
+      img.loading = 'lazy';
+      img.alt = '';
+      img.addEventListener('load', () => img.classList.add('loaded'));
+      if (img.complete) img.classList.add('loaded');
+      img.addEventListener('click', () => {
+        const photos = visiblePhotos();
+        openPhoto(photos.indexOf(img));
+      });
+      gallery.appendChild(img);
+    });
   })
   .catch(() => {
     gallery.innerHTML = '<p id="empty">No photos yet.</p>';
