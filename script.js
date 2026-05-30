@@ -56,20 +56,18 @@ fetch('photos.json')
   });
 
 function buildFilters(categories, data) {
-  const totalAll = (data._all || []).length;
-  const all = makeBtn('All', 'all', true, totalAll);
-  filters.appendChild(all);
+  filters.appendChild(makeBtn('All', 'all', true));
   categories.forEach(cat => {
     const label = LABELS[cat] ?? cat.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-    filters.appendChild(makeBtn(label, cat, false, data[cat].length));
+    filters.appendChild(makeBtn(label, cat, false));
   });
 }
 
-function makeBtn(label, cat, active, count) {
+function makeBtn(label, cat, active) {
   const btn = document.createElement('button');
   btn.dataset.cat = cat;
   if (active) btn.classList.add('active');
-  btn.innerHTML = `${label}<span class="count">${count}</span>`;
+  btn.textContent = label;
   btn.addEventListener('click', () => {
     document.querySelectorAll('#filters button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
