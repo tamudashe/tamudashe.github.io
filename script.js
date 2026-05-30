@@ -27,11 +27,13 @@ fetch('photos.json')
 function openPhoto(src) {
   lightboxImg.src = src;
   lightbox.hidden = false;
+  document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
   lightbox.hidden = true;
   lightboxImg.src = '';
+  document.body.style.overflow = '';
 }
 
 closeBtn.addEventListener('click', closeLightbox);

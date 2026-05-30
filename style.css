@@ -65,13 +65,21 @@ header h1 {
 
 #close {
   position: absolute;
-  top: 1.25rem;
-  right: 1.75rem;
+  top: 1rem;
+  right: 1rem;
   background: none;
   border: none;
   font-size: 2rem;
   line-height: 1;
   cursor: pointer;
   color: #fff;
-  padding: 0.25rem;
+  padding: 0.75rem;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+@media (max-width: 500px) {
+  header { padding: 2rem 1rem 1.5rem; }
+  #gallery { columns: 1; column-gap: 0; padding: 0; }
+  .photo { margin-bottom: 0; }
 }
