@@ -177,7 +177,8 @@ header h1 {
   transition: opacity 0.2s;
 }
 
-#exif-panel:not(:empty) { opacity: 1; }
+#exif-panel.visible { opacity: 1; }
+#lightbox:hover #exif-panel:not(:empty) { opacity: 1; }
 
 
 #top {

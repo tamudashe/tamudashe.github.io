@@ -11,6 +11,11 @@ const topBtn = document.getElementById('top');
 
 const LABELS = { 'washington-dc': 'Washington DC' };
 const ABBREVS = new Set(['sf', 'bw', 'dc', 'nsx', 'bmw', 'v8', 'lc']);
+const CAMERA_NAMES = {
+  'ILCE-7M4': 'Sony A7 IV', 'ILCE-7M3': 'Sony A7 III', 'ILCE-7M2': 'Sony A7 II',
+  'ILCE-7RM4': 'Sony A7R IV', 'ILCE-7RM3': 'Sony A7R III', 'ILCE-7RM5': 'Sony A7R V',
+  'ILCE-7SM3': 'Sony A7S III', 'ILCE-7C': 'Sony A7C', 'ILCE-6700': 'Sony A6700',
+};
 
 function altFromFilename(name) {
   return name.replace(/\.[^.]+$/, '').split('-')
@@ -21,6 +26,7 @@ function altFromFilename(name) {
 let currentIndex = 0;
 let activeCat = 'all';
 let meta = {};
+let exifTimer = null;
 
 function visiblePhotos() {
   return Array.from(document.querySelectorAll('.photo:not(.hidden)'));
@@ -133,17 +139,16 @@ function openPhoto(index) {
 
   const exif = meta[photo.dataset.path]?.exif;
   if (exif) {
-    const parts = [
-      exif.camera,
-      exif.lens,
-      exif.focal,
-      exif.aperture,
-      exif.shutter,
-      exif.iso ? `ISO ${exif.iso}` : null
-    ].filter(Boolean);
+    const camera = CAMERA_NAMES[exif.camera?.replace(/^SONY\s+/i, '')] || exif.camera;
+    const parts = [camera, exif.lens, exif.focal, exif.aperture, exif.shutter,
+      exif.iso ? `ISO ${exif.iso}` : null].filter(Boolean);
     exifPanel.textContent = parts.join(' · ');
+    exifPanel.classList.add('visible');
+    clearTimeout(exifTimer);
+    exifTimer = setTimeout(() => exifPanel.classList.remove('visible'), 3000);
   } else {
     exifPanel.textContent = '';
+    exifPanel.classList.remove('visible');
   }
 
   lightbox.hidden = false;
@@ -157,6 +162,8 @@ function closeLightbox() {
   lightboxImg.classList.remove('ready');
   spinner.classList.remove('active');
   exifPanel.textContent = '';
+  exifPanel.classList.remove('visible');
+  clearTimeout(exifTimer);
   document.body.style.overflow = '';
 }
 
