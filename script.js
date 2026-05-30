@@ -16,8 +16,12 @@ fetch('photos.json')
 
     buildFilters(categories);
 
-    categories.forEach(cat => {
-      data[cat].forEach(name => {
+    const lists = categories.map(cat => data[cat].map(name => ({ cat, name })));
+    const maxLen = Math.max(...lists.map(l => l.length));
+    for (let i = 0; i < maxLen; i++) {
+      for (const list of lists) {
+        if (i >= list.length) continue;
+        const { cat, name } = list[i];
         const img = document.createElement('img');
         img.src = `photos/thumbs/${cat}/${name}`;
         img.className = 'photo';
@@ -26,8 +30,8 @@ fetch('photos.json')
         img.alt = '';
         img.addEventListener('click', () => openPhoto(`photos/${cat}/${name}`));
         gallery.appendChild(img);
-      });
-    });
+      }
+    }
   })
   .catch(() => {
     gallery.innerHTML = '<p id="empty">No photos yet.</p>';
