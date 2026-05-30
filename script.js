@@ -12,7 +12,7 @@ fetch('photos.json')
     }
     photos.forEach(name => {
       const img = document.createElement('img');
-      img.src = 'photos/' + name;
+      img.src = 'photos/thumbs/' + name;
       img.className = 'photo';
       img.loading = 'lazy';
       img.alt = '';
