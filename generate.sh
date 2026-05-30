@@ -38,8 +38,16 @@ for category in sorted(os.listdir('photos')):
     ordered += sorted(f for f in on_disk if f not in set(prev))
     result[category] = ordered
 
+# Update _all: preserve existing order, append new photos, drop deleted ones
+all_paths = set(f'{cat}/{name}' for cat, names in result.items() for name in names)
+prev_all = existing.get('_all', [])
+new_all = [p for p in prev_all if p in all_paths]
+new_all += sorted(p for p in all_paths if p not in set(prev_all))
+
+output = {'_all': new_all, **result}
+
 with open('photos.json', 'w') as f:
-    json.dump(result, f, indent=2)
+    json.dump(output, f, indent=2)
 
 total = sum(len(v) for v in result.values())
 print(f"photos.json updated — {total} photo(s) across {len(result)} categories")

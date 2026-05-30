@@ -2,9 +2,11 @@ const gallery = document.getElementById('gallery');
 const filters = document.getElementById('filters');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
+const spinner = document.getElementById('spinner');
 const closeBtn = document.getElementById('close');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
+const topBtn = document.getElementById('top');
 
 const LABELS = { 'washington-dc': 'Washington DC' };
 
@@ -24,7 +26,7 @@ fetch('photos.json')
       return;
     }
 
-    buildFilters(categories);
+    buildFilters(categories, data);
     applyHash();
 
     const entries = (data._all || []).map(path => {
@@ -53,20 +55,21 @@ fetch('photos.json')
     gallery.innerHTML = '<p id="empty">No photos yet.</p>';
   });
 
-function buildFilters(categories) {
-  const all = makeBtn('All', 'all', true);
+function buildFilters(categories, data) {
+  const totalAll = (data._all || []).length;
+  const all = makeBtn('All', 'all', true, totalAll);
   filters.appendChild(all);
   categories.forEach(cat => {
     const label = LABELS[cat] ?? cat.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-    filters.appendChild(makeBtn(label, cat, false));
+    filters.appendChild(makeBtn(label, cat, false, data[cat].length));
   });
 }
 
-function makeBtn(label, cat, active) {
+function makeBtn(label, cat, active, count) {
   const btn = document.createElement('button');
-  btn.textContent = label;
   btn.dataset.cat = cat;
   if (active) btn.classList.add('active');
+  btn.innerHTML = `${label}<span class="count">${count}</span>`;
   btn.addEventListener('click', () => {
     document.querySelectorAll('#filters button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -86,18 +89,44 @@ function applyHash() {
   if (btn) btn.click();
 }
 
+function preload(index) {
+  const photos = visiblePhotos();
+  [-1, 1].forEach(offset => {
+    const i = (index + offset + photos.length) % photos.length;
+    const src = photos[i]?.dataset.full;
+    if (src) { const img = new Image(); img.src = src; }
+  });
+}
+
 function openPhoto(index) {
   const photos = visiblePhotos();
   if (!photos.length) return;
   currentIndex = (index + photos.length) % photos.length;
-  lightboxImg.src = photos[currentIndex].dataset.full;
+  const src = photos[currentIndex].dataset.full;
+
+  lightboxImg.classList.remove('ready');
+  spinner.classList.add('active');
+
+  lightboxImg.onload = () => {
+    spinner.classList.remove('active');
+    lightboxImg.classList.add('ready');
+  };
+  lightboxImg.src = src;
+  if (lightboxImg.complete) {
+    spinner.classList.remove('active');
+    lightboxImg.classList.add('ready');
+  }
+
   lightbox.hidden = false;
   document.body.style.overflow = 'hidden';
+  preload(currentIndex);
 }
 
 function closeLightbox() {
   lightbox.hidden = true;
   lightboxImg.src = '';
+  lightboxImg.classList.remove('ready');
+  spinner.classList.remove('active');
   document.body.style.overflow = '';
 }
 
@@ -124,3 +153,9 @@ lightbox.addEventListener('touchend', e => {
 });
 
 window.addEventListener('hashchange', applyHash);
+
+window.addEventListener('scroll', () => {
+  topBtn.classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
