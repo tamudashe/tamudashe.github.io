@@ -20,6 +20,7 @@ header h1 {
 
 #filters {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
   margin-top: 1.25rem;
@@ -57,10 +58,12 @@ header h1 {
   width: 100%;
   margin-bottom: 8px;
   cursor: pointer;
-  transition: opacity 0.15s;
+  opacity: 0;
+  transition: opacity 0.4s;
 }
 
-.photo:hover { opacity: 0.8; }
+.photo.loaded { opacity: 1; }
+.photo.loaded:hover { opacity: 0.8; }
 
 #empty {
   padding: 6rem 2rem;
@@ -103,7 +106,31 @@ header h1 {
   min-height: 44px;
 }
 
+#prev, #next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 3rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #fff;
+  padding: 1rem;
+  min-width: 44px;
+  min-height: 44px;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+  user-select: none;
+}
+
+#prev { left: 1rem; }
+#next { right: 1rem; }
+#prev:hover, #next:hover { opacity: 1; }
+
 @media (max-width: 500px) {
   header { padding: 2rem 1rem 1.5rem; }
   .photo { margin-bottom: 0; }
+  #prev { left: 0.25rem; }
+  #next { right: 0.25rem; }
 }
