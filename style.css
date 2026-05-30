@@ -59,7 +59,7 @@ header h1 {
 }
 
 @media (max-width: 900px) { #gallery { columns: 2; } }
-@media (max-width: 500px) { #gallery { columns: 1; padding: 0; } }
+@media (max-width: 500px) { #gallery { columns: 1; padding: 0 8px 8px; } }
 
 .photo {
   display: block;
