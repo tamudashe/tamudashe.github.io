@@ -23,7 +23,9 @@
     "subway-train-arriving.jpg",
     "yellow-cab-queensboro-bridge.jpg",
     "oculus-one-world-trade-bw.jpg",
-    "one-world-trade-golden-hour.jpg"
+    "one-world-trade-golden-hour.jpg",
+    "hudson-river-pier-chairs-bw.jpg",
+    "midtown-skyline-overcast.jpg"
   ],
   "san-francisco": [
     "beach-photographer-bw.jpg",
@@ -31,7 +33,18 @@
     "highway-aerial.jpg",
     "palace-of-fine-arts-stump.jpg",
     "payphone-graffiti.jpg",
-    "waterfront-skyline.jpg"
+    "waterfront-skyline.jpg",
+    "golden-gate-harbor-sunset.jpg",
+    "golden-gate-rooftop-dusk.jpg",
+    "jellyfish-bw.jpg"
+  ],
+  "tahoe": [
+    "donner-lake-dusk.jpg",
+    "donner-lake-sunset.jpg",
+    "drone-in-flight-bw.jpg",
+    "drone-over-lake-bw.jpg",
+    "porsche-cayman-forest-bw.jpg",
+    "sierra-at-tahoe-resort.jpg"
   ],
   "washington-dc": [
     "amtrak-train-yard-bw.jpg",
