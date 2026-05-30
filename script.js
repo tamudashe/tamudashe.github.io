@@ -1,15 +1,19 @@
 const gallery = document.getElementById('gallery');
 const filters = document.getElementById('filters');
+const colorFilters = document.getElementById('color-filters');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const spinner = document.getElementById('spinner');
+const exifPanel = document.getElementById('exif-panel');
 const closeBtn = document.getElementById('close');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 const topBtn = document.getElementById('top');
+const mapEl = document.getElementById('map');
 
 const LABELS = { 'washington-dc': 'Washington DC' };
 const ABBREVS = new Set(['sf', 'bw', 'dc', 'nsx', 'bmw', 'v8', 'lc']);
+const SWATCH_COLORS = { warm: '#e07820', cool: '#2e72c8', mono: '#888888', earth: '#6b8c42' };
 
 function altFromFilename(name) {
   return name.replace(/\.[^.]+$/, '').split('-')
@@ -18,34 +22,50 @@ function altFromFilename(name) {
 }
 
 let currentIndex = 0;
+let activeColor = null;
+let activeCat = 'all';
+let leafletMap = null;
+let meta = {};
 
 function visiblePhotos() {
   return Array.from(document.querySelectorAll('.photo:not(.hidden)'));
 }
 
+function applyFilters() {
+  document.querySelectorAll('.photo').forEach(img => {
+    const catMatch = activeCat === 'all' || img.dataset.cat === activeCat;
+    const colorMatch = !activeColor || img.dataset.color === activeColor;
+    img.classList.toggle('hidden', !catMatch || !colorMatch);
+  });
+}
+
 fetch('photos.json')
   .then(r => r.json())
   .then(data => {
-    const categories = Object.keys(data).filter(k => k !== '_all' && data[k].length > 0);
+    meta = data._meta || {};
+    const categories = Object.keys(data).filter(k => !k.startsWith('_') && data[k].length > 0);
 
     if (!categories.length) {
       gallery.innerHTML = '<p id="empty">No photos yet.</p>';
       return;
     }
 
-    buildFilters(categories, data);
+    buildFilters(categories);
+    buildColorFilters();
 
     const entries = (data._all || []).map(path => {
       const slash = path.indexOf('/');
-      return { cat: path.slice(0, slash), name: path.slice(slash + 1) };
+      return { cat: path.slice(0, slash), name: path.slice(slash + 1), path };
     });
 
-    entries.forEach(({ cat, name }) => {
+    entries.forEach(({ cat, name, path }) => {
       const img = document.createElement('img');
       img.src = `photos/thumbs/${cat}/${name}`;
       img.className = 'photo';
       img.dataset.cat = cat;
       img.dataset.full = `photos/${cat}/${name}`;
+      img.dataset.path = path;
+      img.dataset.color = meta[path]?.color || '';
       img.loading = 'lazy';
       img.alt = altFromFilename(name);
       img.addEventListener('load', () => img.classList.add('loaded'));
@@ -58,12 +78,13 @@ fetch('photos.json')
     });
 
     applyHash();
+    initMapToggle();
   })
   .catch(() => {
     gallery.innerHTML = '<p id="empty">No photos yet.</p>';
   });
 
-function buildFilters(categories, data) {
+function buildFilters(categories) {
   filters.appendChild(makeBtn('All', 'all', true));
   categories.forEach(cat => {
     const label = LABELS[cat] ?? cat.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -79,12 +100,36 @@ function makeBtn(label, cat, active) {
   btn.addEventListener('click', () => {
     document.querySelectorAll('#filters button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    document.querySelectorAll('.photo').forEach(img => {
-      img.classList.toggle('hidden', cat !== 'all' && img.dataset.cat !== cat);
-    });
+    activeCat = cat;
+    applyFilters();
     location.hash = cat === 'all' ? '' : cat;
   });
   return btn;
+}
+
+function buildColorFilters() {
+  const buckets = [...new Set(Object.values(meta).map(m => m.color).filter(Boolean))];
+  const order = ['warm', 'cool', 'earth', 'mono'];
+  order.filter(b => buckets.includes(b)).forEach(bucket => {
+    const btn = document.createElement('button');
+    btn.className = 'color-swatch';
+    btn.dataset.bucket = bucket;
+    btn.style.background = SWATCH_COLORS[bucket];
+    btn.title = bucket.charAt(0).toUpperCase() + bucket.slice(1);
+    btn.setAttribute('aria-label', bucket);
+    btn.addEventListener('click', () => {
+      if (activeColor === bucket) {
+        activeColor = null;
+        btn.classList.remove('active');
+      } else {
+        document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+        activeColor = bucket;
+        btn.classList.add('active');
+      }
+      applyFilters();
+    });
+    colorFilters.appendChild(btn);
+  });
 }
 
 function applyHash() {
@@ -108,7 +153,8 @@ function openPhoto(index) {
   const photos = visiblePhotos();
   if (!photos.length) return;
   currentIndex = (index + photos.length) % photos.length;
-  const src = photos[currentIndex].dataset.full;
+  const photo = photos[currentIndex];
+  const src = photo.dataset.full;
 
   lightboxImg.classList.remove('ready');
   spinner.classList.add('active');
@@ -123,6 +169,21 @@ function openPhoto(index) {
     lightboxImg.classList.add('ready');
   }
 
+  const exif = meta[photo.dataset.path]?.exif;
+  if (exif) {
+    const parts = [
+      exif.camera,
+      exif.lens,
+      exif.focal,
+      exif.aperture,
+      exif.shutter,
+      exif.iso ? `ISO ${exif.iso}` : null
+    ].filter(Boolean);
+    exifPanel.textContent = parts.join(' · ');
+  } else {
+    exifPanel.textContent = '';
+  }
+
   lightbox.hidden = false;
   document.body.style.overflow = 'hidden';
   preload(currentIndex);
@@ -133,6 +194,7 @@ function closeLightbox() {
   lightboxImg.src = '';
   lightboxImg.classList.remove('ready');
   spinner.classList.remove('active');
+  exifPanel.textContent = '';
   document.body.style.overflow = '';
 }
 
@@ -165,3 +227,59 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+function initMapToggle() {
+  const hasGPS = Object.values(meta).some(m => m.gps);
+  if (!hasGPS) return;
+
+  const btn = document.createElement('button');
+  btn.id = 'map-toggle';
+  btn.textContent = 'Map';
+  filters.appendChild(btn);
+
+  btn.addEventListener('click', () => {
+    const mapVisible = !mapEl.hidden;
+    if (mapVisible) {
+      mapEl.hidden = true;
+      gallery.hidden = false;
+      btn.classList.remove('active');
+      btn.textContent = 'Map';
+    } else {
+      gallery.hidden = true;
+      mapEl.hidden = false;
+      btn.classList.add('active');
+      btn.textContent = 'Grid';
+      if (!leafletMap) initMap();
+    }
+  });
+}
+
+function initMap() {
+  leafletMap = L.map('map').setView([20, 0], 2);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(leafletMap);
+
+  const allPhotos = Array.from(document.querySelectorAll('.photo'));
+
+  Object.entries(meta).forEach(([path, m]) => {
+    if (!m.gps) return;
+    const [lat, lng] = m.gps;
+    const marker = L.circleMarker([lat, lng], {
+      radius: 7, fillColor: '#1d1d1f', color: '#fff',
+      weight: 2, opacity: 1, fillOpacity: 0.9
+    }).addTo(leafletMap);
+
+    marker.on('click', () => {
+      const img = allPhotos.find(p => p.dataset.path === path);
+      if (img) {
+        mapEl.hidden = true;
+        gallery.hidden = false;
+        document.getElementById('map-toggle').classList.remove('active');
+        document.getElementById('map-toggle').textContent = 'Map';
+        const photos = visiblePhotos();
+        openPhoto(photos.indexOf(img));
+      }
+    });
+  });
+}

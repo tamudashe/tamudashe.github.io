@@ -66,6 +66,788 @@
     "cars/toyota-99-problems.jpg",
     "washington-dc/great-zimbabwe-exhibit-bw.jpg"
   ],
+  "_meta": {
+    "washington-dc/rinse-clothesline-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/100s",
+        "iso": "800"
+      }
+    },
+    "washington-dc/cracked-iphone-exhibit-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5",
+        "shutter": "1/100s",
+        "iso": "32000"
+      }
+    },
+    "washington-dc/appalachian-dulcimer-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/100s",
+        "iso": "5000"
+      }
+    },
+    "san-francisco/payphone-graffiti.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/2",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "tahoe/sierra-highway-aerial.jpg": {
+      "color": "warm",
+      "hex": "#915f3b",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/14",
+        "shutter": "1/200s",
+        "iso": "160"
+      }
+    },
+    "washington-dc/laundry-exhibit-crowd-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/100s",
+        "iso": "1250"
+      }
+    },
+    "san-francisco/golden-gate-cargo-ship-sunrise.jpg": {
+      "color": "warm",
+      "hex": "#7f3800",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5.6",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "tahoe/drone-over-lake-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/2",
+        "shutter": "1/1000s",
+        "iso": "50"
+      }
+    },
+    "san-francisco/bay-bridge-lower-deck-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 85mm F1.4 GM",
+        "focal": "85mm",
+        "aperture": "f/5.6",
+        "shutter": "1/100s",
+        "iso": "200"
+      }
+    },
+    "cars/lotus-interior.jpg": {
+      "color": "warm",
+      "hex": "#3c4119",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/3.2",
+        "shutter": "1/250s",
+        "iso": "100"
+      }
+    },
+    "cars/toyota-99-problems.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/20",
+        "shutter": "1/100s",
+        "iso": "400"
+      }
+    },
+    "san-francisco/ferry-building-clock-tower.jpg": {
+      "color": "warm",
+      "hex": "#462a17",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 85mm F1.4 GM",
+        "focal": "85mm",
+        "aperture": "f/5.6",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "new-york/oculus-one-world-trade-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/16",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "washington-dc/kiplinger-library-hallway-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5.6",
+        "shutter": "1/160s",
+        "iso": "2000"
+      }
+    },
+    "washington-dc/washington-monument-rain-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5.6",
+        "shutter": "1/60s",
+        "iso": "5000"
+      }
+    },
+    "washington-dc/museum-blueprint-exhibit-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/100s",
+        "iso": "125"
+      }
+    },
+    "san-francisco/sf-skyline-alamo-square.jpg": {
+      "color": "warm",
+      "hex": "#92552a",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 85mm F1.4 GM",
+        "focal": "85mm",
+        "aperture": "f/3.5",
+        "shutter": "1/100s",
+        "iso": "50"
+      }
+    },
+    "washington-dc/military-medal-box-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/2",
+        "shutter": "1/160s",
+        "iso": "2000"
+      }
+    },
+    "washington-dc/great-zimbabwe-exhibit-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/800s",
+        "iso": "10000"
+      }
+    },
+    "san-francisco/golden-gate-rooftop-dusk.jpg": {
+      "color": "warm",
+      "hex": "#d77100",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/100s",
+        "iso": "400"
+      }
+    },
+    "new-york/oculus-aerial.jpg": {
+      "color": "warm",
+      "hex": "#3a281d",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5.6",
+        "shutter": "1/100s",
+        "iso": "800"
+      }
+    },
+    "cars/pontiac-firebird-interior-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/3.5",
+        "shutter": "1/160s",
+        "iso": "100"
+      }
+    },
+    "san-francisco/palace-of-fine-arts-stump.jpg": {
+      "color": "warm",
+      "hex": "#764929",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/4.5",
+        "shutter": "1/5000s",
+        "iso": "1250"
+      }
+    },
+    "new-york/hudson-river-pier-chairs-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/6.3",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "new-york/one-world-trade-golden-hour.jpg": {
+      "color": "warm",
+      "hex": "#c36b13",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/4",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "cars/mercedes-interior.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "san-francisco/golden-gate-fog.jpg": {
+      "color": "cool",
+      "hex": "#512320",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 28-70mm F3.5-5.6 OSS",
+        "focal": "47mm",
+        "aperture": "f/5.6",
+        "shutter": "1/1000s",
+        "iso": "100"
+      }
+    },
+    "washington-dc/mash-distance-signs-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/100s",
+        "iso": "1000"
+      }
+    },
+    "cars/truck-interior-rain.jpg": {
+      "color": "warm",
+      "hex": "#895100",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/2.8",
+        "shutter": "1/100s",
+        "iso": "200"
+      }
+    },
+    "cars/lotus-rear-boot.jpg": {
+      "color": "earth",
+      "hex": "#ac8a1e",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/4",
+        "shutter": "1/250s",
+        "iso": "100"
+      }
+    },
+    "cars/alfa-romeo-front.jpg": {
+      "color": "cool",
+      "hex": "#79242a",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5",
+        "shutter": "1/250s",
+        "iso": "50"
+      }
+    },
+    "washington-dc/amtrak-train-yard-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/2.5",
+        "shutter": "1/500s",
+        "iso": "100"
+      }
+    },
+    "cars/car-meet-street.jpg": {
+      "color": "earth",
+      "hex": "#ae3e3c",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/2.8",
+        "shutter": "1/250s",
+        "iso": "50"
+      }
+    },
+    "cars/nsx-lineup.jpg": {
+      "color": "warm",
+      "hex": "#4f491e",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5",
+        "shutter": "1/250s",
+        "iso": "50"
+      }
+    },
+    "san-francisco/sf-city-lights-night.jpg": {
+      "color": "warm",
+      "hex": "#11414a",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/50s",
+        "iso": "1600"
+      }
+    },
+    "cars/ferrari-front.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/6.3",
+        "shutter": "1/400s",
+        "iso": "50"
+      }
+    },
+    "cars/sports-car-cockpit-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/6.3",
+        "shutter": "1/100s",
+        "iso": "64"
+      }
+    },
+    "san-francisco/ocean-beach-kite-surfers-sunset.jpg": {
+      "color": "warm",
+      "hex": "#feb700",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/1250s",
+        "iso": "50"
+      }
+    },
+    "new-york/brooklyn-bridge-platform-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/1600s",
+        "iso": "4000"
+      }
+    },
+    "tahoe/donner-lake-sunset.jpg": {
+      "color": "warm",
+      "hex": "#fc8f00",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/11",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "san-francisco/painted-ladies-city-hall.jpg": {
+      "color": "warm",
+      "hex": "#472b19",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 85mm F1.4 GM",
+        "focal": "85mm",
+        "aperture": "f/5.6",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "washington-dc/potomac-bridge-fog-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/4000s",
+        "iso": "800"
+      }
+    },
+    "san-francisco/jellyfish-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5.6",
+        "shutter": "1/100s",
+        "iso": "3200"
+      }
+    },
+    "cars/ferrari-engine-cover-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5",
+        "shutter": "1/160s",
+        "iso": "64"
+      }
+    },
+    "san-francisco/historic-streetcar-intersection.jpg": {
+      "color": "warm",
+      "hex": "#ef502e",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/125s",
+        "iso": "1000"
+      }
+    },
+    "san-francisco/beach-photographer-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5",
+        "shutter": "1/8000s",
+        "iso": "1250"
+      }
+    },
+    "new-york/yellow-cab-queensboro-bridge.jpg": {
+      "color": "warm",
+      "hex": "#d07a26",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5.6",
+        "shutter": "1/2500s",
+        "iso": "500"
+      }
+    },
+    "san-francisco/fisherman-bay-bridge-sunrise.jpg": {
+      "color": "warm",
+      "hex": "#432b17",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 85mm F1.4 GM",
+        "focal": "85mm",
+        "aperture": "f/8",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "cars/v8-engine-bay.jpg": {
+      "color": "warm",
+      "hex": "#d77841",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/2.2",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "cars/fiat-interior-red.jpg": {
+      "color": "warm",
+      "hex": "#540f11",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/3.2",
+        "shutter": "1/250s",
+        "iso": "50"
+      }
+    },
+    "new-york/manhattan-skyline-sunset.jpg": {
+      "color": "warm",
+      "hex": "#000404",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/2000s",
+        "iso": "320"
+      }
+    },
+    "new-york/subway-platform-tunnel.jpg": {
+      "color": "warm",
+      "hex": "#955420",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/640s",
+        "iso": "3200"
+      }
+    },
+    "san-francisco/sf-street-sunset-sky.jpg": {
+      "color": "warm",
+      "hex": "#f77c09",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/2.5",
+        "shutter": "1/100s",
+        "iso": "125"
+      }
+    },
+    "tahoe/palisades-olympic-rings-snow.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/16",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "washington-dc/north-gallery-door-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5.6",
+        "shutter": "1/160s",
+        "iso": "250"
+      }
+    },
+    "washington-dc/lincoln-memorial-crowd-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/125s",
+        "iso": "10000"
+      }
+    },
+    "san-francisco/painted-ladies-skyline.jpg": {
+      "color": "warm",
+      "hex": "#351e00",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 85mm F1.4 GM",
+        "focal": "85mm",
+        "aperture": "f/5",
+        "shutter": "1/100s",
+        "iso": "50"
+      }
+    },
+    "cars/bmw-z4-orange-street.jpg": {
+      "color": "warm",
+      "hex": "#6f0000",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/4",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "washington-dc/necklace-spotlight-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/640s",
+        "iso": "3200"
+      }
+    },
+    "washington-dc/washington-monument-reflecting-pool-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/100s",
+        "iso": "160"
+      }
+    },
+    "cars/porsche-911-maroon.jpg": {
+      "color": "warm",
+      "hex": "#723c1e",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5.6",
+        "shutter": "1/250s",
+        "iso": "100"
+      }
+    },
+    "new-york/subway-train-arriving.jpg": {
+      "color": "warm",
+      "hex": "#9d1006",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/800s",
+        "iso": "8000"
+      }
+    },
+    "washington-dc/mount-vernon-park-map-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/1.8",
+        "shutter": "1/160s",
+        "iso": "100"
+      }
+    },
+    "san-francisco/city-hall-cyclist.jpg": {
+      "color": "cool",
+      "hex": "#8e3f1f",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5",
+        "shutter": "1/8000s",
+        "iso": "1250"
+      }
+    },
+    "cars/lexus-lc-interior-bw.jpg": {
+      "color": "mono",
+      "hex": "#888888",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/9",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    }
+  },
   "cars": [
     "ferrari-engine-cover-bw.jpg",
     "nsx-lineup.jpg",
