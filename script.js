@@ -34,7 +34,6 @@ fetch('photos.json')
     }
 
     buildFilters(categories, data);
-    applyHash();
 
     const entries = (data._all || []).map(path => {
       const slash = path.indexOf('/');
@@ -57,6 +56,8 @@ fetch('photos.json')
       });
       gallery.appendChild(img);
     });
+
+    applyHash();
   })
   .catch(() => {
     gallery.innerHTML = '<p id="empty">No photos yet.</p>';
