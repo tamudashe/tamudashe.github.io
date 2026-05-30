@@ -50,25 +50,6 @@ header h1 {
 
 #filters button.active .count { opacity: 0.6; }
 
-#color-filters {
-  display: flex;
-  gap: 0.6rem;
-  justify-content: center;
-  margin-top: 0.85rem;
-}
-
-.color-swatch {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2.5px solid transparent;
-  cursor: pointer;
-  transition: border-color 0.15s, transform 0.15s;
-  outline: none;
-}
-
-.color-swatch:hover { transform: scale(1.2); }
-.color-swatch.active { border-color: #1d1d1f; }
 
 .photo.hidden { display: none; }
 

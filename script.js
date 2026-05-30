@@ -1,6 +1,5 @@
 const gallery = document.getElementById('gallery');
 const filters = document.getElementById('filters');
-const colorFilters = document.getElementById('color-filters');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const spinner = document.getElementById('spinner');
@@ -13,7 +12,6 @@ const mapEl = document.getElementById('map');
 
 const LABELS = { 'washington-dc': 'Washington DC' };
 const ABBREVS = new Set(['sf', 'bw', 'dc', 'nsx', 'bmw', 'v8', 'lc']);
-const SWATCH_COLORS = { warm: '#e07820', cool: '#2e72c8', mono: '#888888', earth: '#6b8c42' };
 
 function altFromFilename(name) {
   return name.replace(/\.[^.]+$/, '').split('-')
@@ -22,21 +20,12 @@ function altFromFilename(name) {
 }
 
 let currentIndex = 0;
-let activeColor = null;
 let activeCat = 'all';
 let leafletMap = null;
 let meta = {};
 
 function visiblePhotos() {
   return Array.from(document.querySelectorAll('.photo:not(.hidden)'));
-}
-
-function applyFilters() {
-  document.querySelectorAll('.photo').forEach(img => {
-    const catMatch = activeCat === 'all' || img.dataset.cat === activeCat;
-    const colorMatch = !activeColor || img.dataset.color === activeColor;
-    img.classList.toggle('hidden', !catMatch || !colorMatch);
-  });
 }
 
 fetch('photos.json')
@@ -51,7 +40,6 @@ fetch('photos.json')
     }
 
     buildFilters(categories);
-    buildColorFilters();
 
     const entries = (data._all || []).map(path => {
       const slash = path.indexOf('/');
@@ -65,7 +53,6 @@ fetch('photos.json')
       img.dataset.cat = cat;
       img.dataset.full = `photos/${cat}/${name}`;
       img.dataset.path = path;
-      img.dataset.color = meta[path]?.color || '';
       img.loading = 'lazy';
       img.alt = altFromFilename(name);
       img.addEventListener('load', () => img.classList.add('loaded'));
@@ -101,36 +88,14 @@ function makeBtn(label, cat, active) {
     document.querySelectorAll('#filters button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeCat = cat;
-    applyFilters();
+    document.querySelectorAll('.photo').forEach(img => {
+      img.classList.toggle('hidden', cat !== 'all' && img.dataset.cat !== cat);
+    });
     location.hash = cat === 'all' ? '' : cat;
   });
   return btn;
 }
 
-function buildColorFilters() {
-  const buckets = [...new Set(Object.values(meta).map(m => m.color).filter(Boolean))];
-  const order = ['warm', 'cool', 'earth', 'mono'];
-  order.filter(b => buckets.includes(b)).forEach(bucket => {
-    const btn = document.createElement('button');
-    btn.className = 'color-swatch';
-    btn.dataset.bucket = bucket;
-    btn.style.background = SWATCH_COLORS[bucket];
-    btn.title = bucket.charAt(0).toUpperCase() + bucket.slice(1);
-    btn.setAttribute('aria-label', bucket);
-    btn.addEventListener('click', () => {
-      if (activeColor === bucket) {
-        activeColor = null;
-        btn.classList.remove('active');
-      } else {
-        document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-        activeColor = bucket;
-        btn.classList.add('active');
-      }
-      applyFilters();
-    });
-    colorFilters.appendChild(btn);
-  });
-}
 
 function applyHash() {
   const cat = location.hash.slice(1);
