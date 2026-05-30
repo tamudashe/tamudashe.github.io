@@ -3,7 +3,6 @@ const filters = document.getElementById('filters');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const spinner = document.getElementById('spinner');
-const exifPanel = document.getElementById('exif-panel');
 const closeBtn = document.getElementById('close');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
@@ -11,11 +10,6 @@ const topBtn = document.getElementById('top');
 
 const LABELS = { 'washington-dc': 'Washington DC' };
 const ABBREVS = new Set(['sf', 'bw', 'dc', 'nsx', 'bmw', 'v8', 'lc']);
-const CAMERA_NAMES = {
-  'ILCE-7M4': 'Sony A7 IV', 'ILCE-7M3': 'Sony A7 III', 'ILCE-7M2': 'Sony A7 II',
-  'ILCE-7RM4': 'Sony A7R IV', 'ILCE-7RM3': 'Sony A7R III', 'ILCE-7RM5': 'Sony A7R V',
-  'ILCE-7SM3': 'Sony A7S III', 'ILCE-7C': 'Sony A7C', 'ILCE-6700': 'Sony A6700',
-};
 
 function altFromFilename(name) {
   return name.replace(/\.[^.]+$/, '').split('-')
@@ -25,8 +19,6 @@ function altFromFilename(name) {
 
 let currentIndex = 0;
 let activeCat = 'all';
-let meta = {};
-let exifTimer = null;
 
 function visiblePhotos() {
   return Array.from(document.querySelectorAll('.photo:not(.hidden)'));
@@ -35,7 +27,6 @@ function visiblePhotos() {
 fetch('photos.json')
   .then(r => r.json())
   .then(data => {
-    meta = data._meta || {};
     const categories = Object.keys(data).filter(k => !k.startsWith('_') && data[k].length > 0);
 
     if (!categories.length) {
@@ -47,16 +38,15 @@ fetch('photos.json')
 
     const entries = (data._all || []).map(path => {
       const slash = path.indexOf('/');
-      return { cat: path.slice(0, slash), name: path.slice(slash + 1), path };
+      return { cat: path.slice(0, slash), name: path.slice(slash + 1) };
     });
 
-    entries.forEach(({ cat, name, path }) => {
+    entries.forEach(({ cat, name }) => {
       const img = document.createElement('img');
       img.src = `photos/thumbs/${cat}/${name}`;
       img.className = 'photo';
       img.dataset.cat = cat;
       img.dataset.full = `photos/${cat}/${name}`;
-      img.dataset.path = path;
       img.loading = 'lazy';
       img.alt = altFromFilename(name);
       img.addEventListener('load', () => img.classList.add('loaded'));
@@ -99,7 +89,6 @@ function makeBtn(label, cat, active) {
   return btn;
 }
 
-
 function applyHash() {
   const cat = location.hash.slice(1);
   const btn = cat
@@ -121,8 +110,7 @@ function openPhoto(index) {
   const photos = visiblePhotos();
   if (!photos.length) return;
   currentIndex = (index + photos.length) % photos.length;
-  const photo = photos[currentIndex];
-  const src = photo.dataset.full;
+  const src = photos[currentIndex].dataset.full;
 
   lightboxImg.classList.remove('ready');
   spinner.classList.add('active');
@@ -137,20 +125,6 @@ function openPhoto(index) {
     lightboxImg.classList.add('ready');
   }
 
-  const exif = meta[photo.dataset.path]?.exif;
-  if (exif) {
-    const camera = CAMERA_NAMES[exif.camera?.replace(/^SONY\s+/i, '')] || exif.camera;
-    const parts = [camera, exif.lens, exif.focal, exif.aperture, exif.shutter,
-      exif.iso ? `ISO ${exif.iso}` : null].filter(Boolean);
-    exifPanel.textContent = parts.join(' · ');
-    exifPanel.classList.add('visible');
-    clearTimeout(exifTimer);
-    exifTimer = setTimeout(() => exifPanel.classList.remove('visible'), 3000);
-  } else {
-    exifPanel.textContent = '';
-    exifPanel.classList.remove('visible');
-  }
-
   lightbox.hidden = false;
   document.body.style.overflow = 'hidden';
   preload(currentIndex);
@@ -161,9 +135,6 @@ function closeLightbox() {
   lightboxImg.src = '';
   lightboxImg.classList.remove('ready');
   spinner.classList.remove('active');
-  exifPanel.textContent = '';
-  exifPanel.classList.remove('visible');
-  clearTimeout(exifTimer);
   document.body.style.overflow = '';
 }
 
