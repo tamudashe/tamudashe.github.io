@@ -26,20 +26,19 @@ header h1 {
 }
 
 #filters button {
-  background: none;
+  background: #f5f5f7;
   border: none;
   font-family: inherit;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #86868b;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #1d1d1f;
   cursor: pointer;
-  padding: 0.35rem 0.75rem;
-  border-radius: 20px;
-  transition: all 0.15s;
+  padding: 0.4rem 1rem;
+  border-radius: 980px;
+  transition: background 0.15s, color 0.15s;
 }
 
-#filters button:hover { color: #1d1d1f; }
+#filters button:hover { background: #e8e8ed; }
 #filters button.active { background: #1d1d1f; color: #fff; }
 
 .photo.hidden { display: none; }
