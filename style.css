@@ -18,20 +18,29 @@ header h1 {
   text-transform: uppercase;
 }
 
-
 #gallery {
-  columns: 3;
-  column-gap: 8px;
   padding: 0 8px 8px;
 }
 
-@media (max-width: 900px) { #gallery { columns: 2; } }
-@media (max-width: 500px) { #gallery { columns: 1; } }
+.pair {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: start;
+}
+
+.pair:nth-child(even) {
+  grid-template-columns: 1fr 2fr;
+}
+
+.pair.solo {
+  grid-template-columns: 1fr;
+}
 
 .photo {
   display: block;
   width: 100%;
-  margin-bottom: 8px;
   cursor: pointer;
   transition: opacity 0.15s;
 }
@@ -81,6 +90,6 @@ header h1 {
 
 @media (max-width: 500px) {
   header { padding: 2rem 1rem 1.5rem; }
-  #gallery { columns: 1; column-gap: 0; padding: 0; }
+  .pair { grid-template-columns: 1fr !important; }
   .photo { margin-bottom: 0; }
 }

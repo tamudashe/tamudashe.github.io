@@ -10,15 +10,21 @@ fetch('photos.json')
       gallery.innerHTML = '<p id="empty">No photos yet.</p>';
       return;
     }
-    photos.forEach(name => {
-      const img = document.createElement('img');
-      img.src = 'photos/thumbs/' + name;
-      img.className = 'photo';
-      img.loading = 'lazy';
-      img.alt = '';
-      img.addEventListener('click', () => openPhoto('photos/' + name));
-      gallery.appendChild(img);
-    });
+    for (let i = 0; i < photos.length; i += 2) {
+      const pair = document.createElement('div');
+      pair.className = 'pair' + (i + 1 >= photos.length ? ' solo' : '');
+      [photos[i], photos[i + 1]].forEach(name => {
+        if (!name) return;
+        const img = document.createElement('img');
+        img.src = 'photos/thumbs/' + name;
+        img.className = 'photo';
+        img.loading = 'lazy';
+        img.alt = '';
+        img.addEventListener('click', () => openPhoto('photos/' + name));
+        pair.appendChild(img);
+      });
+      gallery.appendChild(pair);
+    }
   })
   .catch(() => {
     gallery.innerHTML = '<p id="empty">No photos yet.</p>';
