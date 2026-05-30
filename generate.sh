@@ -1,31 +1,34 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-mkdir -p photos/thumbs
 
-exts=("jpg" "jpeg" "png" "webp" "gif" "avif")
+python3 - <<'EOF'
+import json, os, subprocess
 
-for f in photos/*; do
-  [[ -f "$f" ]] || continue
-  ext="${f##*.}"
-  ext_lower=$(echo "$ext" | tr '[:upper:]' '[:lower:]')
-  skip=true
-  for e in "${exts[@]}"; do [[ "$ext_lower" == "$e" ]] && skip=false && break; done
-  $skip && continue
-
-  name=$(basename "$f")
-  thumb="photos/thumbs/$name"
-  [[ -f "$thumb" ]] && continue
-
-  sips -Z 1200 "$f" --out "$thumb" > /dev/null 2>&1
-  echo "thumbnail: $name"
-done
-
-python3 -c "
-import json, os
 exts = ('.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif')
-photos = sorted(f for f in os.listdir('photos') if f.lower().endswith(exts))
-print(json.dumps(photos, indent=2))
-" > photos.json
+result = {}
 
-count=$(python3 -c "import json; print(len(json.load(open('photos.json'))))")
-echo "photos.json updated — $count photo(s)"
+for category in sorted(os.listdir('photos')):
+    cat_path = f'photos/{category}'
+    if not os.path.isdir(cat_path) or category == 'thumbs':
+        continue
+
+    thumb_dir = f'photos/thumbs/{category}'
+    os.makedirs(thumb_dir, exist_ok=True)
+
+    photos = sorted(f for f in os.listdir(cat_path) if f.lower().endswith(exts))
+
+    for name in photos:
+        thumb = f'{thumb_dir}/{name}'
+        if not os.path.exists(thumb):
+            subprocess.run(['sips', '-Z', '1200', f'{cat_path}/{name}', '--out', thumb],
+                           capture_output=True)
+            print(f'thumbnail: {category}/{name}')
+
+    result[category] = photos
+
+with open('photos.json', 'w') as f:
+    json.dump(result, f, indent=2)
+
+total = sum(len(v) for v in result.values())
+print(f"photos.json updated — {total} photo(s) across {len(result)} categories")
+EOF
