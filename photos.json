@@ -67,7 +67,6 @@
     "washington-dc/great-zimbabwe-exhibit-bw.jpg",
     "san-francisco/arched-windows-corner-building.jpg",
     "san-francisco/bay-twilight-skyline.jpg",
-    "san-francisco/palace-of-fine-arts-dome.jpg",
     "san-francisco/palace-of-fine-arts-rotunda.jpg",
     "san-francisco/pelican-golden-gate-fog.jpg",
     "san-francisco/sailboat-golden-gate.jpg"
@@ -853,17 +852,6 @@
         "iso": "100"
       }
     },
-    "san-francisco/palace-of-fine-arts-dome.jpg": {
-      "color": "warm",
-      "hex": "#4c2810",
-      "exif": {
-        "camera": "FUJIFILM X100VI",
-        "focal": "23mm",
-        "aperture": "f/5.6",
-        "shutter": "1/160s",
-        "iso": "400"
-      }
-    },
     "san-francisco/palace-of-fine-arts-rotunda.jpg": {
       "color": "warm",
       "hex": "#2f1f0e",
@@ -973,7 +961,6 @@
     "payphone-graffiti.jpg",
     "arched-windows-corner-building.jpg",
     "bay-twilight-skyline.jpg",
-    "palace-of-fine-arts-dome.jpg",
     "palace-of-fine-arts-rotunda.jpg",
     "pelican-golden-gate-fog.jpg",
     "sailboat-golden-gate.jpg"
