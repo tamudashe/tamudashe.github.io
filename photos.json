@@ -64,7 +64,13 @@
     "cars/pontiac-firebird-interior-bw.jpg",
     "washington-dc/mount-vernon-park-map-bw.jpg",
     "cars/toyota-99-problems.jpg",
-    "washington-dc/great-zimbabwe-exhibit-bw.jpg"
+    "washington-dc/great-zimbabwe-exhibit-bw.jpg",
+    "san-francisco/arched-windows-corner-building.jpg",
+    "san-francisco/bay-twilight-skyline.jpg",
+    "san-francisco/palace-of-fine-arts-dome.jpg",
+    "san-francisco/palace-of-fine-arts-rotunda.jpg",
+    "san-francisco/pelican-golden-gate-fog.jpg",
+    "san-francisco/sailboat-golden-gate.jpg"
   ],
   "_meta": {
     "washington-dc/rinse-clothesline-bw.jpg": {
@@ -846,6 +852,74 @@
         "shutter": "1/100s",
         "iso": "100"
       }
+    },
+    "san-francisco/palace-of-fine-arts-dome.jpg": {
+      "color": "warm",
+      "hex": "#4c2810",
+      "exif": {
+        "camera": "FUJIFILM X100VI",
+        "focal": "23mm",
+        "aperture": "f/5.6",
+        "shutter": "1/160s",
+        "iso": "400"
+      }
+    },
+    "san-francisco/palace-of-fine-arts-rotunda.jpg": {
+      "color": "warm",
+      "hex": "#2f1f0e",
+      "exif": {
+        "camera": "FUJIFILM X100VI",
+        "focal": "23mm",
+        "aperture": "f/2.8",
+        "shutter": "1/125s",
+        "iso": "80"
+      }
+    },
+    "san-francisco/bay-twilight-skyline.jpg": {
+      "color": "cool",
+      "hex": "#032b3b",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/4",
+        "shutter": "1/100s",
+        "iso": "500"
+      }
+    },
+    "san-francisco/arched-windows-corner-building.jpg": {
+      "color": "earth",
+      "hex": "#363f16",
+      "exif": {
+        "camera": "FUJIFILM X100VI",
+        "focal": "23mm",
+        "aperture": "f/2.8",
+        "shutter": "1/125s",
+        "iso": "64"
+      }
+    },
+    "san-francisco/sailboat-golden-gate.jpg": {
+      "color": "cool",
+      "hex": "#b1844a",
+      "exif": {
+        "camera": "SONY ILCE-7M4",
+        "lens": "FE 35mm F1.8",
+        "focal": "35mm",
+        "aperture": "f/5.6",
+        "shutter": "1/100s",
+        "iso": "100"
+      }
+    },
+    "san-francisco/pelican-golden-gate-fog.jpg": {
+      "color": "warm",
+      "hex": "#7e5b31",
+      "exif": {
+        "camera": "FUJIFILM X100VI",
+        "focal": "23mm",
+        "aperture": "f/2.5",
+        "shutter": "1/160s",
+        "iso": "80"
+      }
     }
   },
   "cars": [
@@ -896,7 +970,13 @@
     "beach-photographer-bw.jpg",
     "city-hall-cyclist.jpg",
     "palace-of-fine-arts-stump.jpg",
-    "payphone-graffiti.jpg"
+    "payphone-graffiti.jpg",
+    "arched-windows-corner-building.jpg",
+    "bay-twilight-skyline.jpg",
+    "palace-of-fine-arts-dome.jpg",
+    "palace-of-fine-arts-rotunda.jpg",
+    "pelican-golden-gate-fog.jpg",
+    "sailboat-golden-gate.jpg"
   ],
   "tahoe": [
     "donner-lake-sunset.jpg",
